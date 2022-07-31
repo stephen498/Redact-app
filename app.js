@@ -28,7 +28,8 @@ function startApp() {
             (index == 0 || index == array.length - 1) ? char : sym.value
         ).join('')
 
-    ) console.log(redact);
+    )
+    console.log(redact);
     const final = redact.join(' ');
     console.log(final);
 
