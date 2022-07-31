@@ -8,14 +8,18 @@ function startApp() {
     const sym = document.getElementById('symbol');
     const submit = document.getElementById('submit');
     let count = 0;
-
+    let counter = 0;
+    let symbols = [',', '.', '_', ':', ';', '?', '@']
     for (let key of words) {
-        if (key == scrabble.value) {
+        if (key.toLowerCase() == (scrabble.value).toLowerCase()) {
             count += 1;
+        }
+        if (!symbols.includes(key)) {
+            counter += 1;
         }
     }
     let redact = words.map((item, index, array) =>
-        (item != scrabble.value) ? item :
+        (item.toLowerCase() != (scrabble.value).toLowerCase()) ? item :
 
         // for (let i = 1; i < (item.length - 1); i++) {
         //     item[i] = sym;
@@ -24,8 +28,7 @@ function startApp() {
             (index == 0 || index == array.length - 1) ? char : sym.value
         ).join('')
 
-    )
-    console.log(redact);
+    ) console.log(redact);
     const final = redact.join(' ');
     console.log(final);
 
@@ -36,10 +39,13 @@ function startApp() {
     perfect.innerText = final;
     const score = document.createElement('p');
     score.innerText = `The scrabbled word showed up ${count} time(s) `;
+    const number = document.createElement('p');
+    number.innerText = `The number of word are ${counter}`;
     content.remove();
     scrabble.remove();
     sym.remove();
     submit.remove();
     document.body.prepend(perfect);
     document.body.prepend(score);
+    document.body.prepend(number);
 }
