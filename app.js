@@ -10,7 +10,7 @@ function startApp() {
     const submit = document.getElementById('submit');
     let count = 0;
     let counter = 0;
-    let symbols = [',', '.', '_', ':', ';', '?', '@']
+    let symbols = [',', '.', '_', ':', ';', '?', '@'];
     for (let key of words) {
         if (key.toLowerCase() == (scrabble.value).toLowerCase()) {
             count += 1;
