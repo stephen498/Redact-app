@@ -12,7 +12,7 @@ function startApp() {
     let counter = 0;
     let symbols = [',', '.', '_', ':', ';', '?', '@'];
     for (let key of words) {
-        if (key.toLowerCase() == (scrabble.value).toLowerCase()) {
+        if (key.slice(0, scrabble.value.length).toLowerCase() == (scrabble.value).toLowerCase()) {
             count += 1;
         }
         if (!symbols.includes(key)) {
@@ -20,7 +20,7 @@ function startApp() {
         }
     }
     let redact = words.map((item, index, array) =>
-        (item.toLowerCase() != (scrabble.value).toLowerCase()) ? item :
+        (item.slice(0, scrabble.value.length).toLowerCase() != (scrabble.value).toLowerCase()) ? item :
 
         // for (let i = 1; i < (item.length - 1); i++) {
         //     item[i] = sym;
@@ -41,15 +41,16 @@ function startApp() {
     let time;
     time = date1 - date;
     const timer = document.createElement('p');
-    timer.innerText = ` number of seconds taken 
+    timer.innerText = ` Timer 
                           ${time} ms`;
-    timer.style.width = '300px';
+    timer.style.width = '250px';
     timer.style.height = '200px';
     timer.style.border = '1px solid black';
     timer.style.borderRadius = '5px';
     timer.style.fontSize = '30px';
     timer.style.fontWeight = 'bold';
     timer.style.textAlign = 'center';
+    timer.style.marginLeft = '1500px';
     const perfect = document.createElement('div');
     perfect.innerText = final;
     perfect.style.width = '600px';
@@ -80,13 +81,15 @@ function startApp() {
     document.body.prepend(number);
     const grid = document.querySelectorAll('p');
     for (let key of grid) {
-        key.style.width = '400px';
-        key.style.height = '300px';
+        key.style.width = '250px';
+        key.style.height = '200px';
         key.style.border = '1px solid black';
         key.style.borderRadius = '5px';
         key.style.fontSize = '50px';
         key.style.fontWeight = 'bold';
         key.style.textAlign = 'center';
         // perfect.style.marginLeft = '155px';
+        key.style.display = 'inline-block';
+        key.style.margin = '100px'
     }
 }
