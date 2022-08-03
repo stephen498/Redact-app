@@ -9,8 +9,6 @@ function startApp() {
     const sym = document.getElementById('symbol');
     const submit = document.getElementById('submit');
     let count = [];
-
-    let count1 = 0;
     let counter = 0;
     let symbols = [',', '.', '_', ':', ';', '?', '@'];
     let scrab = scrabble.value.split(',');
@@ -75,18 +73,16 @@ function startApp() {
     perfect.style.paddingTop = '100px';
     perfect.style.textAlign = 'center';
     perfect.style.marginLeft = '155px';
-    const score = document.createElement('p');
-    score.innerText = ` scrabbled word ${scrab[0]}   
-                        ${count[0]}`
+    const score = document.createElement('textarea');
+    score.innerText = `scrabbled word `;
+    for (let i = 0; i < count.length; i++) {
+        score.innerText +=
+            `  
+            ${scrab[i].toLowerCase()} :${count[i]}  
+            `
+    }
     score.id = 'score';
-    const score1 = document.createElement('p');
-    score1.innerText = `scrabbled word ${scrab[1]}
-                        ${count[1]}`;
-    score1.id = 'score1';
-    const score2 = document.createElement('p');
-    score2.innerText = `scrabbled word ${scrab[2]}
-                        ${count[2]}`;
-    score2.id = 'score2';
+
     const number = document.createElement('p');
     number.innerText = `number of words
                         ${counter}`;
@@ -97,14 +93,19 @@ function startApp() {
     document.body.prepend(timer);
     document.body.prepend(perfect);
     document.body.prepend(score);
-    document.body.prepend(score1);
-    document.body.prepend(score2);
+
     // document.getElementById('score').insertAdjacentElement('afterend', number)
     document.body.prepend(number);
+    const grids = document.querySelector('textarea');
+    grids.cols = '20';
+    grids.rows = '10';
+    grids.style.border = '1px solid black';
+    grids.style.fontSize = '50px';
+    grids.style.fontWeight = 'bold';
     const grid = document.querySelectorAll('p');
     for (let key of grid) {
-        key.style.width = '250px';
-        key.style.height = '300px';
+        key.style.width = '400px';
+        key.style.height = '350px';
         key.style.border = '1px solid black';
         key.style.borderRadius = '5px';
         key.style.fontSize = '50px';
