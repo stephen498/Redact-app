@@ -26,20 +26,84 @@ function startApp() {
         }
     }
     console.log(scrab);
-    let redact = words.map((item, index, array) =>
+    let redact;
+    if (scrab.length == 3) {
+        redact = words.map((item, index, array) =>
 
-        (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) && (item.slice(0, scrab[2].length).toLowerCase() != scrab[2].toLowerCase()) ? item :
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) && (item.slice(0, scrab[2].length).toLowerCase() != scrab[2].toLowerCase()) ? item :
 
-        // for (let i = 1; i < (item.length - 1); i++) {
-        //     item[i] = sym;
-        // }
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
 
-        item = item.split('').map((char, index, array) =>
-            (index == 0 || index == array.length - 1) ? char : sym.value
-        ).join('')
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
 
 
-    );
+        );
+    } else if (scrab.length == 2) {
+        redact = words.map((item, index, array) =>
+
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) ? item :
+
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
+
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
+        );
+    } else if (scrab.length == 1) {
+        redact = words.map((item, index, array) =>
+
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) ? item :
+
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
+
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
+        );
+    } else if (scrab.length == 4) {
+        redact = words.map((item, index, array) =>
+
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) && (item.slice(0, scrab[2].length).toLowerCase() != scrab[2].toLowerCase()) && (item.slice(0, scrab[3].length).toLowerCase() != scrab[3].toLowerCase()) ? item :
+
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
+
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
+
+
+        );
+    } else if (scrab.length == 5) {
+        redact = words.map((item, index, array) =>
+
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) && (item.slice(0, scrab[2].length).toLowerCase() != scrab[2].toLowerCase()) && (item.slice(0, scrab[3].length).toLowerCase() != scrab[3].toLowerCase()) && (item.slice(0, scrab[4].length).toLowerCase() != scrab[4].toLowerCase()) ? item :
+
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
+
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
+
+
+        );
+    } else {
+        const error = document.createElement('p');
+        error.innerText = 'The redactApp can only take a maximum of 5 words to scrabble ';
+        document.body.append(error);
+        return;
+    }
     console.log(redact);
     const final = redact.join(' ');
     console.log(final);
@@ -53,14 +117,14 @@ function startApp() {
     const timer = document.createElement('p');
     timer.innerText = ` Timer 
                           ${time} ms`;
-    timer.style.width = '250px';
-    timer.style.height = '200px';
+
     timer.style.border = '1px solid black';
     timer.style.borderRadius = '5px';
-    timer.style.fontSize = '30px';
+    timer.style.width = '90px'
+    timer.style.height = '90px'
     timer.style.fontWeight = 'bold';
     timer.style.textAlign = 'center';
-    timer.style.marginLeft = '1500px';
+    // timer.style.marginLeft = '1500px';
     const perfect = document.createElement('div');
     perfect.innerText = final;
     perfect.style.width = '600px';
@@ -75,6 +139,11 @@ function startApp() {
     perfect.style.marginLeft = '155px';
     const score = document.createElement('textarea');
     score.innerText = `scrabbled word `;
+    // // grids.cols = '10';
+    // // grids.rows = '5';
+    // // grids.style.border = '1px solid black';
+    score.style.fontSize = '20px';
+    score.style.fontWeight = 'bold';
     for (let i = 0; i < count.length; i++) {
         score.innerText +=
             `  
@@ -82,37 +151,63 @@ function startApp() {
             `
     }
     score.id = 'score';
-
     const number = document.createElement('p');
-    number.innerText = `number of words
-                        ${counter}`;
+    number.innerText = `number of words 
+                        ${counter} `;
+
+    number.style.border = '1px solid black';
+    number.style.borderRadius = '5px';
+
+    number.style.fontWeight = 'bold';
+    number.style.textAlign = 'center';
+    // document.getElementById('score').insertAdjacentElement('afterend', number);
     content.remove();
     scrabble.remove();
     sym.remove();
     submit.remove();
-    document.body.prepend(timer);
-    document.body.prepend(perfect);
-    document.body.prepend(score);
+    // const oyin = document.querySelector('container');
 
-    // document.getElementById('score').insertAdjacentElement('afterend', number)
-    document.body.prepend(number);
-    const grids = document.querySelector('textarea');
-    grids.cols = '20';
-    grids.rows = '10';
-    grids.style.border = '1px solid black';
-    grids.style.fontSize = '50px';
-    grids.style.fontWeight = 'bold';
-    const grid = document.querySelectorAll('p');
-    for (let key of grid) {
-        key.style.width = '400px';
-        key.style.height = '350px';
-        key.style.border = '1px solid black';
-        key.style.borderRadius = '5px';
-        key.style.fontSize = '50px';
-        key.style.fontWeight = 'bold';
-        key.style.textAlign = 'center';
-        // perfect.style.marginLeft = '155px';
-        key.style.display = 'inline-block';
-        key.style.margin = '30px'
-    }
+    // oyin.insertAdjacentHTML('afterbegin', 'number');
+    // oyin.insertAdjacentHTML('afterbegin', 'score');
+    // oyin.insertAdjacentHTML('afterbegin', timer);
+    // document.body.prepend(timer);
+    document.body.prepend(perfect);
+    // document.body.prepend(score);
+    // // document.body.prepend(container);
+    // document.getElementById('score').insertAdjacentHTML('afterbegin', number.innerHTML)
+    //     // document.body.prepend(number);
+    // document.getElementById('score').insertAdjacentElement('afterend', timer)
+    // const grids = document.querySelector('textarea');
+    // // grids.cols = '10';
+    // // grids.rows = '5';
+    // // grids.style.border = '1px solid black';
+    // grids.style.fontSize = '4px';
+    // grids.style.fontWeight = 'bold';
+    // const grid = document.querySelectorAll('p');
+    // for (let key of grid) {
+    //     // key.style.width = '50px';
+    //     // key.style.height = '40px';
+    //     key.style.border = '1px solid black';
+    //     key.style.borderRadius = '5px';
+    //     key.style.fontSize = '4px';
+    //     key.style.fontWeight = 'bold';
+    //     key.style.textAlign = 'center';
+    //     // perfect.style.marginLeft = '155px';
+    //     // key.style.display = 'inline-block';
+    //     // key.style.margin = '30px'
+    // }
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.style.flexDirection = 'row';
+    container.style.columnGap = '50px';
+    // container.innerHTML = number.innerHTML;
+    // container.insertBefore(score, document.querySelector('number'))
+    // container.insertBefore(timer, document.querySelector('score'))
+    container.style.border = '1px solid black';
+    container.style.paddingLeft = '180px';
+    container.style.marginBottom = '20px'
+    document.body.prepend(container);
+    container.appendChild(timer);
+    container.appendChild(score);
+    container.appendChild(number);
 }
