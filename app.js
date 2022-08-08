@@ -27,7 +27,52 @@ function startApp() {
     }
     console.log(scrab);
     let redact;
-    if (scrab.length == 3) {
+    let dates;
+    let time;
+    let final;
+    if (scrab.length == 1) {
+        redact = words.map((item, index, array) =>
+
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) ? item :
+
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
+
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
+
+
+        );
+        // let date1 = Date.now();
+        // console.log(date1)
+        // dates = date1;
+        // final = redact.join(' ');
+        // console.log(final);
+
+        // time = dates - date;
+    } else if (scrab.length == 2) {
+        redact = words.map((item, index, array) =>
+
+            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) ? item :
+
+            // for (let i = 1; i < (item.length - 1); i++) {
+            //     item[i] = sym;
+            // }
+
+            item = item.split('').map((char, index, array) =>
+                (index == 0 || index == array.length - 1) ? char : sym.value
+            ).join('')
+        );
+        // let date1 = Date.now();
+        // console.log(date1)
+        // dates = date1;
+        // final = redact.join(' ');
+        // console.log(final);
+
+        time = dates - date;
+    } else if (scrab.length == 3) {
         redact = words.map((item, index, array) =>
 
             (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) && (item.slice(0, scrab[2].length).toLowerCase() != scrab[2].toLowerCase()) ? item :
@@ -42,32 +87,13 @@ function startApp() {
 
 
         );
-    } else if (scrab.length == 2) {
-        redact = words.map((item, index, array) =>
+        // let date1 = Date.now();
+        // console.log(date1)
+        // dates = date1;
+        // final = redact.join(' ');
+        // console.log(final);
 
-            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) && (item.slice(0, scrab[1].length).toLowerCase() != scrab[1].toLowerCase()) ? item :
-
-            // for (let i = 1; i < (item.length - 1); i++) {
-            //     item[i] = sym;
-            // }
-
-            item = item.split('').map((char, index, array) =>
-                (index == 0 || index == array.length - 1) ? char : sym.value
-            ).join('')
-        );
-    } else if (scrab.length == 1) {
-        redact = words.map((item, index, array) =>
-
-            (item.slice(0, scrab[0].length).toLowerCase() != scrab[0].toLowerCase()) ? item :
-
-            // for (let i = 1; i < (item.length - 1); i++) {
-            //     item[i] = sym;
-            // }
-
-            item = item.split('').map((char, index, array) =>
-                (index == 0 || index == array.length - 1) ? char : sym.value
-            ).join('')
-        );
+        // time = dates - date;
     } else if (scrab.length == 4) {
         redact = words.map((item, index, array) =>
 
@@ -83,6 +109,13 @@ function startApp() {
 
 
         );
+        // let date1 = Date.now();
+        // console.log(date1)
+        // dates = date1;
+        // final = redact.join(' ');
+        // console.log(final);
+
+        // time = dates - date;
     } else if (scrab.length == 5) {
         redact = words.map((item, index, array) =>
 
@@ -98,24 +131,37 @@ function startApp() {
 
 
         );
+        // let date1 = Date.now();
+        // console.log(date1)
+        // dates = date1;
+        // final = redact.join(' ');
+        // console.log(final);
+
+        // time = dates - date;
     } else {
         const error = document.createElement('p');
         error.innerText = 'The redactApp can only take a maximum of 5 words to scrabble ';
         document.body.append(error);
         return;
     }
-    console.log(redact);
-    const final = redact.join(' ');
-    console.log(final);
     let date1 = Date.now();
     console.log(date1)
-        // let done;
-        // done = final;
-        // console.log(done);
-    let time;
-    time = date1 - date;
+    dates = date1;
+    final = redact.join(' ');
+    console.log(final);
+
+    time = dates - date;
+    // console.log(final);
+    // let date1 = Date.now();
+    // console.log(date1)
+    // let done;
+    // done = final;
+    // console.log(done);
+    // let time;
+    // time = dates - date;
     const timer = document.createElement('p');
     timer.innerText = ` Timer 
+                          
                           ${time} ms`;
 
     timer.style.border = '1px solid black';
@@ -153,6 +199,7 @@ function startApp() {
     score.id = 'score';
     const number = document.createElement('p');
     number.innerText = `number of words 
+                        
                         ${counter} `;
 
     number.style.border = '1px solid black';
@@ -161,6 +208,9 @@ function startApp() {
     number.style.fontWeight = 'bold';
     number.style.textAlign = 'center';
     // document.getElementById('score').insertAdjacentElement('afterend', number);
+
+    const oyin = document.getElementById('reset');
+    oyin.remove();
     content.remove();
     scrabble.remove();
     sym.remove();
@@ -203,7 +253,7 @@ function startApp() {
     // container.innerHTML = number.innerHTML;
     // container.insertBefore(score, document.querySelector('number'))
     // container.insertBefore(timer, document.querySelector('score'))
-    container.style.border = '1px solid black';
+    // container.style.border = '1px solid black';
     container.style.paddingLeft = '180px';
     container.style.marginBottom = '20px'
     document.body.prepend(container);
